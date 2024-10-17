@@ -1,0 +1,821 @@
+/* Importing a Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;600&display=swap');
+
+/* General Settings */
+body, html {
+  margin: 0em;
+  padding: 0;
+  /*height: 100%;*/
+  height: auto;
+  font-family: 'Lora', serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom right, #1b1c2d, #2a3c4d);
+}
+
+/* Splash Screen Container */
+.splash-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Splash Content */
+.splash-content {
+  min-width:300px;
+  text-align: center;
+  color: #f8f4e3;
+  animation: fadeIn 2s ease-in-out;
+  z-index: 2;
+  overflow:auto;
+  padding: 30% 0% 30% 0%
+}
+
+/* Logo Styling */
+.logo {
+  width: 1.5em;
+  height: auto;
+}
+
+/* Heading and Paragraph Styling */
+h1 {
+  font-size: 3rem;
+}
+
+p {
+  font-size: 1rem;
+  margin-bottom: 0;
+}
+
+button{
+ font-family: 'Lora', serif;
+}
+/* Start Button */
+.start-button {
+  background-color: #a67844;
+  color: #f8f4e3;
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.start-button:hover {
+  background-color: #876338;
+}
+
+/* Firefly Effect */
+.splash-container::before, .splash-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, rgba(0, 0, 0, 0) 60%);
+  opacity: 0.5;
+  animation: firefly 8s linear infinite alternate;
+}
+
+.splash-container::after {
+  animation-delay: 4s;
+}
+
+/* Animations */
+@keyframes firefly {
+  0% { transform: translate(-50%, -50%) scale(1); }
+  100% { transform: translate(50%, 50%) scale(0.9); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
+
+
+        /* HUD section in a single row */
+        #hud {
+          display: flex; /* Flexbox for horizontal layout */
+          justify-content: space-around; /* Distribute items evenly */
+          align-items: center; /* Align items in the center vertically */
+          margin: 0; /* No margin */
+          background-color: #645452; /* Fallback background color */
+          background-image:url(border.jpg);
+          background-repeat: no-repeat;
+          background-size: auto;
+                  
+          position: relative; /* Added to work with 'top' */
+          top: 0; /* Sticks to the top of the page */
+        }
+	
+        
+
+        #gnomy-container, #lantern-container, #beads-container, #quick-access {
+            text-align: center;
+        }
+
+        /* Quick Access buttons */
+        #quick-access button {
+            background-color: #444;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #quick-access button:hover {
+            background-color: #555; /* Darker on hover */
+        }
+
+        /* Gauges section */
+        #gauges {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 0px;
+            background-color: #645452; /* Fallback background color */
+            background-image:url(border.jpg);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;          
+            background-position: bottom;  
+            /*border: 10px solid transparent;
+            padding: 15px;
+            border-image: url(border.jpg) 30 stretch;*/
+            
+            
+        }
+
+        #leafgauge {
+            /*text-align: center;*/
+            display:inline-flex;
+            background-color: #6593a2;
+            color: white;
+            font-weight: bold;
+            font-size:0.35em;
+            padding: 0.25em;
+            border: 2px solid white; 
+            border-color:#98c6d5;
+            border-radius: 0.25em;
+            cursor: pointer;
+            margin: 0.25em 0.5em;
+            height:auto;
+            width:100%;
+            line-height: normal;
+            vertical-align: middle;
+        }
+
+        /* Notifications */
+        #notifications {
+            margin-top: 0px;
+        }
+
+
+
+.hud-button {
+    background-color: #6593a2;
+    color: white;
+    margin: 0.25em;
+    border: 2px solid white; 
+    border-color: #98c6d5;
+    border-radius: 0.25em;
+    cursor: pointer;
+    margin: 0.25em 0;
+    width: 2em;
+    height: 2em;
+    background-repeat: no-repeat;
+    background-size: auto 80%; /* Ensure the image covers the entire div */
+    background-position: center; /* Center the background image */
+    /*background-attachment: fixed; 
+             */
+    text-align:center;
+    vertical-align: middle;
+}
+.hud-button:hover{border-color:#ffffff;}
+        /* Search trees */
+        #search-trees {
+            margin-top: 1px;
+            text-align: center;
+            width:100%;
+        
+        }
+
+
+
+        #btn-search {
+            padding: 0px 5px;
+            background-color: #444;
+            color: white;
+            border: none;
+            font-size:14px;
+            margin:0px;
+            margin-left: 1px;
+            cursor: pointer;
+            border-radius: 5px;
+            width:auto;
+            height:1.5em;
+            font-family: 'Lora', serif;
+        }
+
+        /* Game Menu */
+        #game-menu {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        #game-menu button {
+            background-color: #444;
+            color: white;
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #game-menu button:hover {
+            background-color: #555;
+        }
+.container {
+		background: #ffffff;
+		border-radius: 15px;
+		padding: 0px;
+		max-width: 600px;
+    min-width:400px;
+		margin: auto;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+		color: #4A90E2;
+}
+
+p {
+		line-height: normal;
+}
+
+button {
+		background-color: #4A90E2;
+		color: #fff;
+		padding: 5px 0px;
+		font-size: 1rem;
+		border: none;
+		border-radius: 30px;
+		cursor: pointer;
+		margin-top: 0px;
+		transition: background-color 0.3s;
+    background-color:#888888;*/
+    background-color:none;
+    background-color: #6593a2;
+    color: white;
+    padding: 0.25em;
+    border: 2px solid white; 
+    border-color:#98c6d5;
+    border-radius: 0.25em;
+    cursor: pointer;
+    margin: 0.25em 0;
+    width:auto;
+    height:auto;    
+}
+
+button:hover {
+		border-color: #ffffff;
+}
+
+#datetime {
+		top: 0;
+		color: white;
+		background-color: green;
+		padding: 10px 20px;
+		border-radius: 5px;
+		font-size: 2em;
+		position: absolute;
+		z-index: 3;
+}
+
+
+#leftbutton {
+		position: absolute;
+		left: 20px;
+		color: white;
+		background-color: #444;
+		border: none;
+		padding: 10px 20px;
+		border-radius: 5px;
+		font-size: 1em;
+		cursor: pointer;
+		z-index: 3;
+}
+
+#leftbutton:hover {
+		background-color: #666;
+}
+
+#rightbutton {
+		position: absolute;
+		right: 20px;
+		color: white;
+		background-color: #444;
+		border: none;
+		padding: 10px 20px;
+		border-radius: 5px;
+		font-size: 1em;
+		cursor: pointer;
+		z-index: 3;
+}
+
+#rightbutton:hover {
+		background-color: #666;
+}
+
+#transparent-mirror {
+		left: 20px;
+}
+
+
+/* emotions.css */
+
+#emotions {
+		width: 300px; /* Set to accommodate the largest "emotion cake" */
+		height: 300px;
+}
+
+.emotions, .emotions3, .emotions2, .emotions1 {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	vertical-align: middle;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+}
+
+.emotions2 {
+padding-top:3.5%;
+	
+}
+
+.emotions1  {
+	padding-top:7%;
+
+}
+
+
+.emotions3 div, .emotions2 div, .emotions1 div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+		position: absolute;
+		width: 0;
+		height: 0;
+		border-top-style: solid;
+		transform-origin: 50% 100%; /* Setting the point of rotation to the bottom center */
+}
+
+
+/* Emotions 3 colors */
+.top {
+		border-top-color: #aaaa00;
+}
+
+.top-right {
+		border-top-color: #66ff66;
+}
+
+.right {
+		border-top-color: #44ff44;
+}
+
+.bottom-right {
+		border-top-color: #00aaaa;
+}
+
+.bottom {
+		border-top-color: #4444ff;
+}
+
+.bottom-left {
+		border-top-color: #aa00aa;
+}
+
+.left {
+		border-top-color: #aa0000;
+}
+
+.top-left {
+		border-top-color: #ff4444;
+}
+
+
+
+.top, .top2, .top1 {
+	transform: rotate(0deg);
+}
+
+.top-right, .top-right2, .top-right1 {
+	transform: rotate(45deg);
+}
+
+.right, .right2, .right1 {
+	transform: rotate(90deg);
+}
+
+.bottom-right, .bottom-right2, .bottom-right1 {
+	transform: rotate(135deg);
+}
+
+.bottom, .bottom2, .bottom1 {
+	transform: rotate(180deg);
+}
+
+.bottom-left, .bottom-left2, .bottom-left1 {
+	transform: rotate(225deg);
+}
+
+.left, .left2, .left1 {
+	transform: rotate(270deg);
+}
+
+.top-left, .top-left2, .top-left1 {
+	transform: rotate(315deg);
+}
+
+/* Emotions 3 colors */
+.top, .top-right, .right, .bottom-right, .bottom, .bottom-left, .left, .top-left {
+	transform-origin: 50% 100%;
+	border-left: 60px solid transparent;
+	border-right: 60px solid transparent;
+		border-top-width: 180px;
+		opacity: 1;
+		z-index:4;
+		border-top-style: solid;
+}
+
+
+/* Emotions 2 colors */
+.top2, .top-right2, .right2, .bottom-right2, .bottom2, .bottom-left2, .left2, .top-left2 {
+	border-top-color: #888888;
+	opacity: 0.5;
+	transform-origin: 50% 100%;
+	border-left: 40px solid transparent;
+	border-right: 40px solid transparent;
+  	border-top-width: 120px;
+		border-top-color: #888888;
+		opacity: 0.5;
+	  z-index:5;
+	  border-top-style: solid;
+}
+
+/* Emotions 1 colors */
+.top1, .top-right1, .right1, .bottom-right1, .bottom1, .bottom-left1, .left1, .top-left1 {
+		border-top-color: #888888;
+		opacity: 0.5;
+		transform-origin: 50% 100%;
+		border-left: 20px solid transparent;
+		border-right: 20px solid transparent;
+		border-top-width: 60px;
+		z-index:6;
+  	border-top-style: solid;
+}
+
+
+
+
+
+
+
+#wheel {
+	position: absolute;
+	width: 400px;
+	height: 400px;
+	margin: 0 auto;
+	margin-top:3.5%;
+	margin-left:-3.5%;
+	border-radius: 50%;
+	border: 2px solid black;
+}
+
+.nr1, .nr2, .nr3 {
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	text-align: center;
+	line-height: 50px;
+	border-radius: 50%;
+	background-color: lightblue;
+	border: 1px solid black ;
+	color: red;
+	z-index:7;
+}
+
+.nr1 {
+	left: 175px;  /* Centered in the hub */
+	top: 175px;
+}
+
+.nr2, .nr3 {
+	/* Styling for outer values */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* General Settings */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Lora', serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom right, #1b1c2d, #2a3c4d);
+}
+
+/* Splash Screen Container */
+.splash-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(135deg, #2a3c4d, #1e2434);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Splash Content */
+.splash-content {
+  padding-top: 0em;
+  text-align: center;
+  vertical-align: middle;
+  color: #f8f4e3;
+  animation: fadeIn 2s ease-in-out;
+  z-index: 2;
+  /*height: 100vh;*/
+}
+
+
+
+/* Heading and Paragraph Styling */
+h1 {
+  font-size: 1rem;
+  margin-bottom: 0px;
+}
+
+p {
+  font-size: 1rem;
+  margin-bottom: 0px;
+}
+
+/* Start Button */
+.start-button {
+  background-color: #a67844;
+  color: #f8f4e3;
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.start-button:hover {
+  background-color: #876338;
+}
+
+/* Firefly Effect */
+.splash-container::before, .splash-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, rgba(0, 0, 0, 0) 60%);
+  opacity: 0.5;
+  animation: firefly 8s linear infinite alternate;
+}
+
+.splash-container::after {
+  animation-delay: 4s;
+}
+
+/* Animations */
+@keyframes firefly {
+  0% { transform: translate(-50%, -50%) scale(1); }
+  100% { transform: translate(50%, 50%) scale(0.9); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Logo Styling */
+.logo {
+  width: 1.5em;
+  height: auto;
+  margin-bottom: 0px;
+}
+
+.icon{
+	height:2.5em;
+	width:auto;
+	/*border-top-left-radius: 50% 50%; border-top-right-radius: 50% 50%; border-bottom-right-radius: 50% 50%; border-bottom-left-radius: 50% 50%; 
+background-color:#888888;*/
+  background-color:none;
+  background-color: #6593a2;
+  color: white;
+  padding: 0.;
+  border: 1px;
+  border-color:#cbf9ff;
+  border-radius: 0.25em;
+  cursor: pointer;
+  margin: 0.25em 0;
+}
+
+
+
+
+
+
+
+
+
+        /* Notifications */
+        #notifications {
+            margin-top: 20px;
+        }
+
+        /* Panic button */
+        #panic-button {
+            background-color: #A50021;
+            color: white;
+            padding: 15px 30px;
+            border: 2px solid #aaaaaa; 
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0.25em;
+
+            padding: 0em;
+            border-radius: 0.25em;
+            cursor: pointer;
+            margin: 0.25em 0;    
+            font-size:1em;     
+            text-align:center;
+            vertical-align: middle;   
+width:2em;
+height:2em;
+background-repeat: no-repeat;
+background-size:  auto 100%;
+background-position: center top;
+background-attachment: fixed;
+          }
+          #panic-button:hover {
+            background-color:red;
+            border: 2px solid #ffffff; 
+          }
+        /* Search trees */
+        /* Game Menu */
+        #game-menu {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        #game-menu button {
+            background-color: #444;
+            color: white;
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #game-menu button:hover {
+            background-color: #555;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+body {
+  top:0;
+  font-size: 3vw;
+  height:auto;
+}
+@media screen and (min-width: 1600px) {
+  body {
+     top:0;
+     font-size: 30px;
+  }
+}
+/* Ensure body and html are 100% height */
+body, html {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Align content to the top */
+  background: linear-gradient(to bottom right, #1b1c2d, #2a3c4d);
+}
+
+/* Make the main hub container fill the viewport */
+#game-hub {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+/* The frame will take up the remaining space */
+#frame {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Allow frame to grow and fill available height */
+  padding: 0.25em;
+  border: 1px solid #ffffff;
+
+  /* Background color and pattern */
+  background-color: #9bdef5; /* Light beige, Victorian-like color */
+  background-image:
+    radial-gradient(circle, transparent 20%, #6593a2 20%), /* Dark circles */
+    radial-gradient(circle, transparent 20%, #6593a2 20%), /* Dark circles */
+    radial-gradient(circle, transparent 20%, #85c6db 20%); /* Light circles */
+  background-size: 40px 40px; /* Adjust the size of the pattern */
+  background-position: 0 0, 20px 20px, 40px 40px;
+
+  /* Custom border */
+  border: 10px solid transparent;
+  padding: 2px;
+  border-image: url(border.jpg) 30 stretch;
+}
+
+
+/* Map container should also grow to fill available space */
+#map-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  background-color: #6593a2;
+  margin-top: 0.25em;
+  overflow: hidden;
+}
+
+/* Ensure map takes the full space inside its container */
+#map {
+  flex-grow: 1;
+  background-color: #e0d7a8;
+  overflow: auto;
+}
+
+input [type=text] {
+  font-family: 'Lora', serif;
+  height: 1.5em;
+    padding: 2px;
+    height:2em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-family: 'Lora', serif;
+    width:60%;
+
+}
