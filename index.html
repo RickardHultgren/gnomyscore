@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gnomy Survey for Gig-Economy Platforms</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        .question {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e7f3e7;
+            border: 1px solid #4CAF50;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Gnomy Survey for Gig-Economy Platforms</h1>
+    <form id="surveyForm">
+        <!-- Questions dynamically inserted by JavaScript -->
+    </form>
+
+    <div class="result" id="result" style="display:none;">
+        <h2>Survey Results</h2>
+        <p>Yes: <span id="yesCount"></span></p>
+        <p>No: <span id="noCount"></span></p>
+        <p>Maybe: <span id="maybeCount"></span></p>
+    </div>
+
+    <script>
+        const questions = [
+            "Do your workers often report experiencing stress or burnout?",
+            "Is mental well-being a focus for your company’s worker support programs?",
+            "Would your company consider offering emotional well-being tools to improve worker satisfaction?",
+            "Are workers in your platform regularly exposed to emotionally challenging situations?",
+            "Do you believe your workers would engage with a game-like mental wellness app?",
+            "Are you looking for solutions to help workers balance work-life stress?",
+            "Does your company provide any mental health resources for gig workers currently?",
+            "Are you interested in tools that offer both emotional support and entertainment for workers?",
+            "Do you have a budget allocated for mental health initiatives?",
+            "Is worker turnover a concern within your platform?",
+            "Would you be open to trialing a new mental health app for worker well-being?",
+            "Do you think your gig workers would benefit from daily emotional check-ins?",
+            "Does your platform prioritize worker engagement and retention?",
+            "Do you feel gig workers in your company have sufficient resources to manage stress?",
+            "Is there an emphasis on fostering emotional resilience among your workers?",
+            "Would a solution that blends mindfulness techniques with a gamified experience be appealing to your workers?",
+            "Is user-friendly design important when considering new tools for worker engagement?",
+            "Do you believe workers would be open to tracking their emotional well-being regularly?",
+            "Does your company offer any structured emotional support programs for workers at present?",
+            "Would a mental health app designed for bite-sized, daily use align with your company’s goals for worker support?"
+        ];
+
+        const form = document.getElementById('surveyForm');
+
+        // Generate form questions
+        questions.forEach((question, index) => {
+            const div = document.createElement('div');
+            div.classList.add('question');
+            div.innerHTML = `
+                <label for="q${index}">${question}</label>
+                <input type="radio" name="q${index}" value="Yes"> Yes
+                <input type="radio" name="q${index}" value="No"> No
+                <input type="radio" name="q${index}" value="Maybe"> Maybe
+            `;
+            form.appendChild(div);
+        });
+
+        // Add submit button
+        const submitButton = document.createElement('button');
+        submitButton.type = "button";
+        submitButton.innerText = "Submit";
+        submitButton.onclick = calculateResults;
+        form.appendChild(submitButton);
+
+        function calculateResults() {
+            const formData = new FormData(form);
+            let yesCount = 0;
+            let noCount = 0;
+            let maybeCount = 0;
+
+            for (let [key, value] of formData.entries()) {
+                if (value === "Yes") yesCount++;
+                if (value === "No") noCount++;
+                if (value === "Maybe") maybeCount++;
+            }
+
+            // Display results
+            document.getElementById('yesCount').innerText = yesCount;
+            document.getElementById('noCount').innerText = noCount;
+            document.getElementById('maybeCount').innerText = maybeCount;
+            document.getElementById('result').style.display = "block";
+        }
+    </script>
+
+</body>
+</html>
