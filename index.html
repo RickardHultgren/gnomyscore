@@ -309,6 +309,11 @@ function getFieldFromData(field, data) {
   var output = values.join ? values.join(', ') : values;
   return output;
 }
+
+form.addEventListener('submit', function(e) {
+    calculateResults();
+    // No e.preventDefault() so form submits normally
+});
 </script>
 
 
