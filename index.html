@@ -64,6 +64,9 @@
 
     <div class="result" id="result" style="display:none;">
         <h2>Survey Results</h2>
+        <p><strong>Company Name:</strong> <span id="companyResult"></span></p>
+        <p><strong>Contact Person:</strong> <span id="contactResult"></span></p>
+        <p><strong>Email:</strong> <span id="emailResult"></span></p>
         <p>Yes: <span id="yesCount"></span></p>
         <p>No: <span id="noCount"></span></p>
         <p>Maybe: <span id="maybeCount"></span></p>
@@ -121,6 +124,12 @@
             let noCount = 0;
             let maybeCount = 0;
 
+            // Collect text input results
+            const companyName = formData.get('companyName');
+            const contactName = formData.get('contactName');
+            const email = formData.get('email');
+
+            // Collect radio button answers
             for (let [key, value] of formData.entries()) {
                 if (value === "Yes") yesCount++;
                 if (value === "No") noCount++;
@@ -128,6 +137,9 @@
             }
 
             // Display results
+            document.getElementById('companyResult').innerText = companyName;
+            document.getElementById('contactResult').innerText = contactName;
+            document.getElementById('emailResult').innerText = email;
             document.getElementById('yesCount').innerText = yesCount;
             document.getElementById('noCount').innerText = noCount;
             document.getElementById('maybeCount').innerText = maybeCount;
