@@ -39,13 +39,27 @@
             border-radius: 5px;
         }
     </style>
-    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
     <h1>Gnomy Survey for Gig-Economy Platforms</h1>
+    
+    <!-- Text inputs for company info -->
     <form id="surveyForm">
-        <!-- Questions dynamically inserted by JavaScript -->
+        <div class="question">
+            <label for="companyName">Company Name</label>
+            <input type="text" id="companyName" name="companyName" required>
+        </div>
+        <div class="question">
+            <label for="contactName">Contact Person Name</label>
+            <input type="text" id="contactName" name="contactName" required>
+        </div>
+        <div class="question">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+
+        <!-- 20 Questions dynamically inserted by JavaScript -->
     </form>
 
     <div class="result" id="result" style="display:none;">
@@ -87,9 +101,9 @@
             div.classList.add('question');
             div.innerHTML = `
                 <label for="q${index}">${question}</label>
-                <input type="radio" name="q${index}" value="Yes"> Yes
-                <input type="radio" name="q${index}" value="No"> No
-                <input type="radio" name="q${index}" value="Maybe"> Maybe
+                <input type="radio" name="q${index}" value="Yes" required> Yes
+                <input type="radio" name="q${index}" value="No" required> No
+                <input type="radio" name="q${index}" value="Maybe" required> Maybe
             `;
             form.appendChild(div);
         });
