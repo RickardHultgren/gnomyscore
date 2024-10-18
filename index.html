@@ -119,11 +119,12 @@
         //form.appendChild(submitButton);
 
 
-// Add submit button
-const submitButton = document.createElement('button');
-submitButton.type = "submit";  // Change this to "submit"
-submitButton.innerText = "Submit";
-form.appendChild(submitButton);
+            // Add submit button
+        const submitButton = document.createElement('button');
+            submitButton.type = "submit";  // Change this to "submit"
+            submitButton.innerText = "Submit";
+            submitButton.onclick = calculateResults;
+            form.appendChild(submitButton);
 
 
         function calculateResults() {
