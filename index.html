@@ -250,7 +250,7 @@ function record_data(e) {
     // select the 'responses' sheet by default
     var key = "1TJVna1dvC6cx78-lT5k1gsj4otxR6F0jnjhKrN06V_L8"
     var doc = SpreadsheetApp.getActiveSpreadsheet();
-    var sheetName = e.parameters.formGoogleSheetName || "GnomyScore";
+    var sheetName = e.parameters.formGoogleSheetName || "Sheet1";
     var sheet = doc.getSheetByName(sheetName);
     
     var oldHeader = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
