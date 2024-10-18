@@ -5,96 +5,304 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gnomy Survey for Gig-Economy Platforms</title>
     <style>
-        /* Styles as in your original file */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        .question {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e7f3e7;
+            border: 1px solid #4CAF50;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
 
-<h1>Gnomy Survey for Gig-Economy Platforms</h1>
+    <h1>Gnomy Survey for Gig-Economy Platforms</h1>
+    
+    <!-- Text inputs for company info -->
+    <form id="surveyForm" method="POST" action="https://script.google.com/macros/s/AKfycbw5RHbjaar8275dDrsUAQRYZAcQbqnIIjxMDFpI4tHufCJQwiv3SvHF0f6XIzQnlefO/exec">
+        <div class="question">
+            <label for="companyName">Company Name</label>
+            <input type="text" id="companyName" name="companyName" required>
+        </div>
+        <div class="question">
+            <label for="contactName">Contact Person Name</label>
+            <input type="text" id="contactName" name="contactName" required>
+        </div>
+        <div class="question">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+        </div>
 
-<!-- Text inputs for company info -->
-<form id="surveyForm">
-    <div class="question">
-        <label for="companyName">Company Name</label>
-        <input type="text" id="companyName" name="companyName" required>
+        <!-- 20 Questions dynamically inserted by JavaScript -->
+    </form>
+
+    <div class="result" id="result" style="display:none;">
+        <h2>Survey Results</h2>
+        <p><strong>Company Name:</strong> <span id="companyResult"></span></p>
+        <p><strong>Contact Person:</strong> <span id="contactResult"></span></p>
+        <p><strong>Email:</strong> <span id="emailResult"></span></p>
+        <p>Yes: <span id="yesCount"></span></p>
+        <p>No: <span id="noCount"></span></p>
+        <p>Maybe: <span id="maybeCount"></span></p>
     </div>
-    <div class="question">
-        <label for="contactName">Contact Person Name</label>
-        <input type="text" id="contactName" name="contactName" required>
-    </div>
-    <div class="question">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
-    </div>
 
-    <!-- 20 Questions dynamically inserted by JavaScript -->
-</form>
+    <script>
+        const questions = [
+            "Do your workers often report experiencing stress or burnout?",
+            "Is mental well-being a focus for your company’s worker support programs?",
+            "Would your company consider offering emotional well-being tools to improve worker satisfaction?",
+            "Are workers in your platform regularly exposed to emotionally challenging situations?",
+            "Do you believe your workers would engage with a game-like mental wellness app?",
+            "Are you looking for solutions to help workers balance work-life stress?",
+            "Does your company provide any mental health resources for gig workers currently?",
+            "Are you interested in tools that offer both emotional support and entertainment for workers?",
+            "Do you have a budget allocated for mental health initiatives?",
+            "Is worker turnover a concern within your platform?",
+            "Would you be open to trialing a new mental health app for worker well-being?",
+            "Do you think your gig workers would benefit from daily emotional check-ins?",
+            "Does your platform prioritize worker engagement and retention?",
+            "Do you feel gig workers in your company have sufficient resources to manage stress?",
+            "Is there an emphasis on fostering emotional resilience among your workers?",
+            "Would a solution that blends mindfulness techniques with a gamified experience be appealing to your workers?",
+            "Is user-friendly design important when considering new tools for worker engagement?",
+            "Do you believe workers would be open to tracking their emotional well-being regularly?",
+            "Does your company offer any structured emotional support programs for workers at present?",
+            "Would a mental health app designed for bite-sized, daily use align with your company’s goals for worker support?"
+        ];
 
-<div class="result" id="result" style="display:none;">
-    <h2>Survey Results</h2>
-    <p><strong>Company Name:</strong> <span id="companyResult"></span></p>
-    <p><strong>Contact Person:</strong> <span id="contactResult"></span></p>
-    <p><strong>Email:</strong> <span id="emailResult"></span></p>
-    <p>Yes: <span id="yesCount"></span></p>
-    <p>No: <span id="noCount"></span></p>
-    <p>Maybe: <span id="maybeCount"></span></p>
-</div>
+        const form = document.getElementById('surveyForm');
 
-<script>
-    const questions = [
-        /* Same list of 20 questions */
-    ];
-
-    const form = document.getElementById('surveyForm');
-
-    // Generate form questions
-    questions.forEach((question, index) => {
-        const div = document.createElement('div');
-        div.classList.add('question');
-        div.innerHTML = `
-            <label for="q${index}">${question}</label>
-            <input type="radio" name="q${index}" value="Yes" required> Yes
-            <input type="radio" name="q${index}" value="No" required> No
-            <input type="radio" name="q${index}" value="Maybe" required> Maybe
-        `;
-        form.appendChild(div);
-    });
-
-    // Add submit button
-    const submitButton = document.createElement('button');
-    submitButton.type = "button";
-    submitButton.innerText = "Submit";
-    submitButton.onclick = submitSurvey;
-    form.appendChild(submitButton);
-
-    function submitSurvey() {
-        const formData = new FormData(form);
-        const formObj = {};
-
-        formData.forEach((value, key) => {
-            formObj[key] = value;
+        // Generate form questions
+        questions.forEach((question, index) => {
+            const div = document.createElement('div');
+            div.classList.add('question');
+            div.innerHTML = `
+                <label for="q${index}">${question}</label>
+                <input type="radio" name="q${index}" value="Yes" required> Yes
+                <input type="radio" name="q${index}" value="No" required> No
+                <input type="radio" name="q${index}" value="Maybe" required> Maybe
+            `;
+            form.appendChild(div);
         });
 
-        // Submit the form data using Fetch API
-        fetch('https://script.google.com/macros/s/AKfycbw5RHbjaar8275dDrsUAQRYZAcQbqnIIjxMDFpI4tHufCJQwiv3SvHF0f6XIzQnlefO/exec', {
-            method: 'POST',
-            body: new URLSearchParams(formData) // Converts form data into a URL-encoded string
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.result === "success") {
-                calculateResults();
-            } else {
-                alert("There was an error submitting the form.");
+        // Add submit button
+        const submitButton = document.createElement('button');
+        submitButton.type = "button";
+        submitButton.innerText = "Submit";
+        submitButton.onclick = calculateResults;
+        form.appendChild(submitButton);
+
+        function calculateResults() {
+            const formData = new FormData(form);
+            let yesCount = 0;
+            let noCount = 0;
+            let maybeCount = 0;
+
+            // Collect text input results
+            const companyName = formData.get('companyName');
+            const contactName = formData.get('contactName');
+            const email = formData.get('email');
+
+            // Collect radio button answers
+            for (let [key, value] of formData.entries()) {
+                if (value === "Yes") yesCount++;
+                if (value === "No") noCount++;
+                if (value === "Maybe") maybeCount++;
             }
-        })
-        .catch(error => console.error('Error:', error));
+
+            // Display results
+            document.getElementById('companyResult').innerText = companyName;
+            document.getElementById('contactResult').innerText = contactName;
+            document.getElementById('emailResult').innerText = email;
+            document.getElementById('yesCount').innerText = yesCount;
+            document.getElementById('noCount').innerText = noCount;
+            document.getElementById('maybeCount').innerText = maybeCount;
+            document.getElementById('result').style.display = "block";
+        }
+
+/******************************************************************************
+ * This tutorial is based on the work of Martin Hawksey twitter.com/mhawksey  *
+ * But has been simplified and cleaned up to make it more beginner friendly   *
+ * All credit still goes to Martin and any issues/complaints/questions to me. *
+ ******************************************************************************/
+
+// if you want to store your email server-side (hidden), uncomment the next line
+// var TO_ADDRESS = "example@email.net";
+
+// spit out all the keys/values from the form in HTML for email
+// uses an array of keys if provided or the object to determine field order
+function formatMailBody(obj, order) {
+  var result = "";
+  if (!order) {
+    order = Object.keys(obj);
+  }
+  
+  // loop over all keys in the ordered form data
+  for (var idx in order) {
+    var key = order[idx];
+    result += "<h4 style='text-transform: capitalize; margin-bottom: 0'>" + key + "</h4><div>" + sanitizeInput(obj[key]) + "</div>";
+    // for every key, concatenate an `<h4 />`/`<div />` pairing of the key name and its value, 
+    // and append it to the `result` string created at the start.
+  }
+  return result; // once the looping is done, `result` will be one long string to put in the email body
+}
+
+// sanitize content from the user - trust no one 
+// ref: https://developers.google.com/apps-script/reference/html/html-output#appendUntrusted(String)
+function sanitizeInput(rawInput) {
+   var placeholder = HtmlService.createHtmlOutput(" ");
+   placeholder.appendUntrusted(rawInput);
+  
+   return placeholder.getContent();
+ }
+
+function doPost(e) {
+
+  try {
+    Logger.log(e); // the Google Script version of console.log see: Class Logger
+    record_data(e);
+    
+    // shorter name for form data
+    var mailData = e.parameters;
+
+    // names and order of form elements (if set)
+    var orderParameter = e.parameters.formDataNameOrder;
+    var dataOrder;
+    if (orderParameter) {
+      dataOrder = JSON.parse(orderParameter);
+    }
+    
+    // determine recepient of the email
+    // if you have your email uncommented above, it uses that `TO_ADDRESS`
+    // otherwise, it defaults to the email provided by the form's data attribute
+    var sendEmailTo = (typeof TO_ADDRESS !== "undefined") ? TO_ADDRESS : mailData.formGoogleSendEmail;
+    
+    // send email if to address is set
+    if (sendEmailTo) {
+      MailApp.sendEmail({
+        to: String(sendEmailTo),
+        subject: "Contact form submitted",
+        // replyTo: String(mailData.email), // This is optional and reliant on your form actually collecting a field named `email`
+        htmlBody: formatMailBody(mailData, dataOrder)
+      });
     }
 
-    function calculateResults() {
-        // The same result display logic as before
+    return ContentService    // return json success results
+          .createTextOutput(
+            JSON.stringify({"result":"success",
+                            "data": JSON.stringify(e.parameters) }))
+          .setMimeType(ContentService.MimeType.JSON);
+  } catch(error) { // if error return this
+    Logger.log(error);
+    return ContentService
+          .createTextOutput(JSON.stringify({"result":"error", "error": error}))
+          .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+
+/**
+ * record_data inserts the data received from the html form submission
+ * e is the data received from the POST
+ */
+function record_data(e) {
+  var lock = LockService.getDocumentLock();
+  lock.waitLock(30000); // hold off up to 30 sec to avoid concurrent writing
+  
+  try {
+    Logger.log(JSON.stringify(e)); // log the POST data in case we need to debug it
+    
+    // select the 'responses' sheet by default
+    var key = "1TJVna1dvC6cx78-lT5k1gsj4otxR6F0jnjhKrN06V_L8"
+    var doc = SpreadsheetApp.getActiveSpreadsheet();
+    var sheetName = e.parameters.formGoogleSheetName || "GnomyScore";
+    var sheet = doc.getSheetByName(sheetName);
+    
+    var oldHeader = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+    var newHeader = oldHeader.slice();
+    var fieldsFromForm = getDataColumns(e.parameters);
+    var row = [new Date()]; // first element in the row should always be a timestamp
+    
+    // loop through the header columns
+    for (var i = 1; i < oldHeader.length; i++) { // start at 1 to avoid Timestamp column
+      var field = oldHeader[i];
+      var output = getFieldFromData(field, e.parameters);
+      row.push(output);
+      
+      // mark as stored by removing from form fields
+      var formIndex = fieldsFromForm.indexOf(field);
+      if (formIndex > -1) {
+        fieldsFromForm.splice(formIndex, 1);
+      }
     }
+    
+    // set any new fields in our form
+    for (var i = 0; i < fieldsFromForm.length; i++) {
+      var field = fieldsFromForm[i];
+      var output = getFieldFromData(field, e.parameters);
+      row.push(output);
+      newHeader.push(field);
+    }
+    
+    // more efficient to set values as [][] array than individually
+    var nextRow = sheet.getLastRow() + 1; // get next row
+    sheet.getRange(nextRow, 1, 1, row.length).setValues([row]);
+
+    // update header row with any new data
+    if (newHeader.length > oldHeader.length) {
+      sheet.getRange(1, 1, 1, newHeader.length).setValues([newHeader]);
+    }
+  }
+  catch(error) {
+    Logger.log(error);
+  }
+  finally {
+    lock.releaseLock();
+    return;
+  }
+
+}
+
+function getDataColumns(data) {
+  return Object.keys(data).filter(function(column) {
+    return !(column === 'formDataNameOrder' || column === 'formGoogleSheetName' || column === 'formGoogleSendEmail' || column === 'honeypot');
+  });
+}
+
+function getFieldFromData(field, data) {
+  var values = data[field] || '';
+  var output = values.join ? values.join(', ') : values;
+  return output;
+}
 </script>
+
 
 </body>
 </html>
+
