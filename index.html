@@ -114,7 +114,41 @@
         const submitButton = document.createElement('button');
         submitButton.type = "submit";
         submitButton.innerText = "Submit";
+        //submitButton.onclick = calculateResults;
+        submitButton.onclick = function(event) {
+          calculateResults(event);
+        };
+
+
         form.appendChild(submitButton);
+
+        function calculateResults(event) {
+    event.preventDefault(); // Prevent form submission
+    const formData = new FormData(form);
+    let yesCount = 0;
+    let noCount = 0;
+    let maybeCount = 0;
+
+    const companyName = formData.get('companyName');
+    const contactName = formData.get('contactName');
+    const email = formData.get('email');
+
+    for (let [key, value] of formData.entries()) {
+        if (value === "Yes") yesCount++;
+        if (value === "No") noCount++;
+        if (value === "Maybe") maybeCount++;
+    }
+
+    document.getElementById('companyResult').innerText = companyName;
+    document.getElementById('contactResult').innerText = contactName;
+    document.getElementById('emailResult').innerText = email;
+    document.getElementById('yesCount').innerText = yesCount;
+    document.getElementById('noCount').innerText = noCount;
+    document.getElementById('maybeCount').innerText = maybeCount;
+
+    document.getElementById('result').style.display = 'block';
+}
+
     </script>
 
 </body>
